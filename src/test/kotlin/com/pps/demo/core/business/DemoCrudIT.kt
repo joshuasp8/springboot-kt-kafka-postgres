@@ -26,13 +26,12 @@ class DemoCrudIT @Autowired constructor(
     // create demo
     val createdDemo = demoCreator.createDemo(CreateDemoParams("Hello World"))
     val retrievedDemo = demoRetriever.getDemo(createdDemo.id)
-    assertEquals(retrievedDemo.id, createdDemo.id)
-    assertEquals(retrievedDemo.message, createdDemo.message)
+    assertEquals(retrievedDemo, createdDemo)
 
     // update demo
     demoUpdater.updateDemo(UpdateDemoParams(retrievedDemo.id, "Goodbye World"))
     val updatedDemo = demoRetriever.getDemo(retrievedDemo.id)
-    assertEquals(updatedDemo.id, createdDemo.id)
+    assertEquals(updatedDemo, createdDemo)
     assertEquals(updatedDemo.message, "Goodbye World")
 
     // delete demo
